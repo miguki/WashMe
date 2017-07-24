@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
+import static org.springframework.http.HttpMethod.*;
 import static pl.com.sages.connect.common.web.UriBuilder.*;
 
 public class OAuth2 {
@@ -31,8 +32,8 @@ public class OAuth2 {
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
                     .antMatchers(PUBLIC_URIS).permitAll()
-                    .antMatchers(HttpMethod.POST, USERS_URI).permitAll()
-                    .antMatchers(HttpMethod.GET, ACTIVE_USER_URI).authenticated()
+                    .antMatchers(POST, USERS_URI).permitAll()
+                    .antMatchers(GET, ACTIVE_USER_URI).authenticated()
                     .antMatchers(ALL_URIS).hasRole(Role.ADMIN.name());
         }
 
