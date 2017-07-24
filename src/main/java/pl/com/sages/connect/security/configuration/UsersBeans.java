@@ -12,8 +12,8 @@ import pl.com.sages.connect.security.service.UsersService;
 public class UsersBeans {
 
     @Bean
-    public UsersService usersService(UsersRepository usersRepository, AuthoritiesRepository authoritiesRepository, PasswordEncoder passwordEncoder) {
-        return new UsersService(usersRepository, authoritiesRepository, passwordEncoder);
+    public UsersService usersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
+        return new UsersService(usersRepository, passwordEncoder);
     }
 
     @Bean

@@ -20,8 +20,8 @@ public class OAuth2 {
     private static final String CLIENT_ID = "connect-app";
     private static final String GRANT_TYPE = "password";
     private static final String SCOPE = "web";
-    private static final String USERS_URL = PREFIX + "/users";
-    private static final String ACTIVE_USER_URL = PREFIX + "/users/active";
+    private static final String USERS_URI = PREFIX + "/users";
+    private static final String ACTIVE_USER_URI = PREFIX + "/users/active";
 
     @EnableResourceServer
     @Configuration
@@ -31,8 +31,8 @@ public class OAuth2 {
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
                     .antMatchers(PUBLIC_URIS).permitAll()
-                    .antMatchers(HttpMethod.POST, USERS_URL).permitAll()
-                    .antMatchers(HttpMethod.GET, ACTIVE_USER_URL).authenticated()
+                    .antMatchers(HttpMethod.POST, USERS_URI).permitAll()
+                    .antMatchers(HttpMethod.GET, ACTIVE_USER_URI).authenticated()
                     .antMatchers(ALL_URIS).hasRole(Role.ADMIN.name());
         }
 

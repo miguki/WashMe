@@ -10,7 +10,6 @@ import pl.com.sages.connect.common.model.ResultPage;
 import pl.com.sages.connect.security.configuration.Role;
 import pl.com.sages.connect.security.entity.Authority;
 import pl.com.sages.connect.security.entity.User;
-import pl.com.sages.connect.security.repository.AuthoritiesRepository;
 import pl.com.sages.connect.security.repository.UsersRepository;
 
 import java.security.Principal;
@@ -18,12 +17,10 @@ import java.security.Principal;
 public class UsersService implements UserDetailsService {
 
     private UsersRepository usersRepository;
-    private AuthoritiesRepository authoritiesRepository;
     private PasswordEncoder passwordEncoder;
 
-    public UsersService(UsersRepository usersRepository, AuthoritiesRepository authoritiesRepository, PasswordEncoder passwordEncoder) {
+    public UsersService(UsersRepository usersRepository, PasswordEncoder passwordEncoder) {
         this.usersRepository = usersRepository;
-        this.authoritiesRepository = authoritiesRepository;
         this.passwordEncoder = passwordEncoder;
     }
 

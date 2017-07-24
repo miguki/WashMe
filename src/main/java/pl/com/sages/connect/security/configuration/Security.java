@@ -5,18 +5,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import pl.com.sages.connect.security.service.UsersService;
 
-@EnableWebSecurity
 @Configuration
 public class Security extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UsersService usersService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Bean
     public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
@@ -31,8 +31,7 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(usersService)
-                .passwordEncoder(new StandardPasswordEncoder());
+        auth.userDetailsService(usersService).passwordEncoder(passwordEncoder);
     }
 
 }
