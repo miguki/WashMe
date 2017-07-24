@@ -1,4 +1,4 @@
-package pl.com.sages.backend.common.configuration;
+package pl.training.backend.common.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 @Configuration
 public class Swagger {
 
-    private static final String BASE_PACKAGE = "pl.com.sages.backend";
+    private static final String BASE_PACKAGE = "pl.training.backend";
 
     @Bean
     public Docket productApi() {

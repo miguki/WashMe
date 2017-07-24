@@ -1,9 +1,9 @@
-package pl.com.sages.backend.security.configuration;
+package pl.training.backend.security.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import pl.com.sages.backend.common.web.UriBuilder;
+import pl.training.backend.common.web.UriBuilder;
 
 @Configuration
 public class Cors extends WebMvcConfigurerAdapter {

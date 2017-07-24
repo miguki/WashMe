@@ -1,10 +1,10 @@
-package pl.com.sages.backend.common.configuration;
+package pl.training.backend.common.configuration;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import pl.com.sages.backend.common.model.Mapper;
+import pl.training.backend.common.model.Mapper;
 
 @Configuration
 public class CommonBeans {
