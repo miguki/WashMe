@@ -9,7 +9,7 @@ export class SecurityService {
 
   events: Observable<boolean>
 
-  private authenticationEvents = new Subject()
+  private authenticationEvents = new Subject<boolean>()
   private oauthServerUrl = "http://localhost:8080/oauth/token"
 
   constructor(private http: Http, private requestOptions: RequestOptions) {
