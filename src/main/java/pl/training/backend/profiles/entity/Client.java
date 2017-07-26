@@ -20,7 +20,7 @@ public class Client {
     private Long id;
     @Column(nullable = false)
     private String name;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne
     private User user;
 
 }

@@ -31,9 +31,11 @@ public class OAuth2 {
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
                     .antMatchers(PUBLIC_URIS).permitAll()
+                    .antMatchers(POST, "/api-v1/clients").permitAll()
                     .antMatchers(POST, USERS_URI).permitAll()
                     .antMatchers(GET, ACTIVE_USER_URI).authenticated()
                     .antMatchers(ALL_URIS).hasRole(Role.ADMIN.name());
+
         }
 
     }

@@ -27,6 +27,9 @@ public class User implements Serializable, UserDetails {
     private Set<Authority> authorities = new HashSet<>();
 
     public void addAuthority(Authority authority) {
+        if (authorities == null) {
+            authorities = new HashSet<>();
+        }
         authorities.add(authority);
     }
 
