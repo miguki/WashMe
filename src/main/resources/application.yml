@@ -1,4 +1,8 @@
 spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:6969/washme
+    username: postgres
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -6,13 +10,13 @@ security:
   oauth2:
     resource:
       filter-order: 3
----
-spring:
-  profiles: production
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/training
-    username: lukaszandrzejewski
-  jpa:
-    hibernate:
-      ddl-auto: update
+#---
+#spring:
+#  profiles: production
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/training
+#    username: lukaszandrzejewski
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
