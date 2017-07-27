@@ -1,9 +1,8 @@
-package pl.training.backend.profiles.dto;
+package pl.training.backend.client.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import pl.training.backend.security.dto.UserDto;
 
 /**
  * Created by Jasiek on 26.07.2017.
@@ -13,9 +12,7 @@ import pl.training.backend.security.dto.UserDto;
 public class ClientDto {
 
     @ApiModelProperty(required = true)
-    private UserDto userDto;
-    @ApiModelProperty(required = true)
-    private long id;
+    private Long id;
     @ApiModelProperty(required = true)
     private String name;
     //URI Builder

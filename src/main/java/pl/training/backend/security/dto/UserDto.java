@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import pl.training.backend.client.dto.ClientDto;
 
 import java.util.Set;
 
@@ -19,5 +20,7 @@ public class UserDto {
     private String password;
     @JsonProperty(access = Access.READ_ONLY)
     private Set<AuthorityDto> authorities;
+    @ApiModelProperty(required = true)
+    private ClientDto clientDto;
 
 }

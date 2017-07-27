@@ -2,10 +2,14 @@ package pl.training.backend.security.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import pl.training.backend.common.model.ResultPage;
 import pl.training.backend.security.configuration.Role;
 import pl.training.backend.security.entity.Authority;
@@ -59,5 +63,16 @@ public class UsersService implements UserDetailsService {
         return usersRepository.getByLogin(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User %s not found", username)));
     }
+
+    public User getCurrentUser() {
+        OAuth2Authentication oAuth2Authentication = ((OAuth2Authentication) SecurityContextHolder.getContext().getAuthentication());
+        return (User) oAuth2Authentication.getPrincipal();
+    }
+
+//    public User getCurrentUser() {
+//        Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+//        String login = currentUser.getName();
+//        return usersRepository.getByLogin(login).get();
+//    }
 
 }

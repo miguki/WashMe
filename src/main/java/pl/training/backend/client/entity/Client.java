@@ -1,12 +1,8 @@
-package pl.training.backend.profiles.entity;
+package pl.training.backend.client.entity;
 
 import lombok.Data;
-import pl.training.backend.security.entity.Authority;
-import pl.training.backend.security.entity.User;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Jasiek on 26.07.2017.
@@ -20,7 +16,5 @@ public class Client {
     private Long id;
     @Column(nullable = false)
     private String name;
-    @OneToOne
-    private User user;
 
 }

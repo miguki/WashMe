@@ -8,6 +8,8 @@ import {SecurityModule} from "./security/security.module";
 import {routerModule} from "./approuting";
 import {UsersService} from "./users/users.service";
 import { NavbarComponent } from './navigation/navbar/navbar.component';
+import {ReservationModule, } from "./reservation/reservation.module";
+import {ReservationService} from "./reservation/reservation.service";
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { NavbarComponent } from './navigation/navbar/navbar.component';
     BrowserModule,
     UsersModule,
     SecurityModule,
+    ReservationModule,
     routerModule
   ],
   providers: [
     SecurityService,
     Api,
     SecurityService,
-    UsersService
+    UsersService,
+    ReservationService
   ],
   bootstrap: [AppComponent]
 })

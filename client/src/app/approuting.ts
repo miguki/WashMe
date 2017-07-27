@@ -1,12 +1,11 @@
-import {LoginFormComponent} from "./security/login-form/login-form.component";
 import {RouterModule} from "@angular/router";
 import {SecurityGuard} from "./security/security.guard";
 import {RegisterFormComponent} from "./security/register-form/register-form.component";
+import {AllClientsComponent} from "./users/clients/all-clients/all-clients.component";
+import {AllReservationsComponent} from "./reservation/all-reservations/all-reservations.component";
 
 const routesConfig = [
-  // {
-  //   path: 'login', component: LoginFormComponent
-  // },
+
   {
     path: '', redirectTo: '/', pathMatch: 'full'
   },
@@ -14,8 +13,14 @@ const routesConfig = [
     path: 'register', component: RegisterFormComponent
   },
   {
-    path: '*', redirectTo: '/', canActivate: [SecurityGuard]
-  }
+    path: 'all-clients', component: AllClientsComponent
+  },
+  {
+    path: 'all-reservations', component: AllReservationsComponent
+  },
+  // {
+  //   path: '*', redirectTo: '/', canActivate: [SecurityGuard]
+  // }
 ]
 
 export const routerModule = RouterModule.forRoot(routesConfig)

@@ -16,7 +16,12 @@ export class UsersService {
   }
 
   registerNewClient(user:any):Observable<any>{
-    return this.http.post(this.api.registerClient, user)
+    console.log(user)
+    return this.http.post(this.api.clients, user)
+  }
+
+  getAll(): Observable<any> {
+    return this.http.get(this.api.clients).map(response => response.json())
   }
 
 }

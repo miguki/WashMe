@@ -11,20 +11,25 @@ import {BehaviorSubject} from "rxjs/BehaviorSubject";
 @Injectable()
 export class SecurityService {
 
-  events: Observable<any>
+  events: Observable<boolean>;
 
-  private authenticationEvents = new BehaviorSubject<any>(1)
+  private authenticationEvents = new BehaviorSubject<boolean>(false);
 
   constructor(private http: Http, private requestOptions: RequestOptions, private api: Api) {
     this.events = this.authenticationEvents.asObservable()
+    let token = sessionStorage.getItem('token')
+    if(token){
+      this.setAuthorizationToken(token);
+      this.authenticationEvents.next(true);
+    }
   }
 
   isAuthenticated(): boolean{
-    return this.authenticationEvents.getValue()
+    return this.authenticationEvents.getValue();
   }
 
   login(username: string, password: string): Observable<boolean> {
-    let payload = this.preparePayload(username, password)
+    let payload = this.preparePayload(username, password);
     return this.http.post(this.api.oauthServer, payload)
       .map(response => response.json())
       .map(json => json.access_token)
@@ -33,12 +38,14 @@ export class SecurityService {
   }
 
   logout() {
-    this.removeAuthorizationHeader()
+    this.removeAuthorizationHeader();
     this.authenticationEvents.next(false)
+    sessionStorage.removeItem('token');
   }
 
   private onLoginSuccess(token: string) {
-    this.setAuthorizationToken(token)
+    this.setAuthorizationToken(token);
+    sessionStorage.setItem('token', token);
     this.authenticationEvents.next(true)
   }
 
