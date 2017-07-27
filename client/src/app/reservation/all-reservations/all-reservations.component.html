@@ -1,0 +1,20 @@
+<div class="offset-md-0 col-md-12">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Start Hour</th>
+      <th>End Hour</th>
+      <th>Client name</th>
+      <th>Car wash name</th>
+      <th>Car wash slots</th>
+    </tr>
+    <tr *ngFor="let reservation of reservations">
+      <td>{{reservation.id}}</td>
+      <td>{{reservation.startHour | date:'y-MM-dd HH:mm'}}</td>
+      <td>{{reservation.endHour | date:'y-MM-dd HH:mm'}}</td>
+      <td>{{reservation.client.name}}</td>
+      <td>{{reservation.carWash.name}}</td>
+      <td>{{reservation.carWash.slots}}</td>
+    </tr>
+  </table>
+</div>

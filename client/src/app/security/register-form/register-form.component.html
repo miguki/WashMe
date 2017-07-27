@@ -1,0 +1,20 @@
+<div class="offset-md-4 col-md-4">
+  <form>
+    <div class="form-group">
+      <label for="login">Login</label>
+      <input type="text" class="form-control" id="login" placeholder="Enter login" name="login"
+             [(ngModel)]="user.login">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password"
+             [(ngModel)]="user.password">
+    </div>
+    <div class="form-group">
+      <label for="name">First name</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter first name" name="name"
+             [(ngModel)]="user.clientDto.name">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="registerFormMethod()">Submit</button>
+  </form>
+</div>
