@@ -1,5 +1,19 @@
-<p>
-  hours-list works!
-</p>
-<p>{{id}}</p>
-<button type="button" class="btn btn-primary btn-sm" (click)="addReservation()">Add test</button>
+<div class="container">
+<div class="row">
+
+<div class="col-md-3">
+  <h5>Start hours</h5>
+  <button *ngFor="let startHour of startHoursList" class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="setStartHour(startHour)">{{startHour | date:'y-MM-dd HH:mm'}}</button>
+</div>
+  <div class="col-md-3">
+    <h5>End hours</h5>
+    <button *ngFor="let endHour of endHoursList" class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="setEndHour(endHour)">{{endHour | date:'y-MM-dd HH:mm'}}</button>
+  </div>
+</div>
+<div>
+  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" (click)="addReservation()">Order</button>
+</div>
+</div>
+<!--<div class="btn-group-vertical" role="group" aria-label="Basic example">-->
+  <!--<button *ngFor="let hour of hoursList" type="button" class="btn btn-secondary">{{hour | date}}</button>-->
+<!--</div>-->

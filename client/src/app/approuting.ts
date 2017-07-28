@@ -7,6 +7,7 @@ import {CarWashRegisterFormComponent} from "./carwash/car-wash-register-form/car
 import {AllCarWashesComponent} from "./carwash/all-car-washes/all-car-washes.component";
 import {IntroComponent} from "./navigation/intro/intro.component";
 import {HoursListComponent} from "./reservation/hours-list/hours-list.component";
+import {MapComponent} from "./map/map.component";
 
 const routesConfig = [
 
@@ -24,6 +25,9 @@ const routesConfig = [
   },
   {
     path: 'car-wash-register-form', component: CarWashRegisterFormComponent
+  },
+  {
+    path: 'map', component: MapComponent
   },
   {
     path: 'all-car-washes', component: AllCarWashesComponent,

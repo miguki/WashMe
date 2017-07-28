@@ -13,12 +13,15 @@ import {ReservationService} from "./reservation/reservation.service";
 import {CarWashModule} from "./carwash/carwash.module";
 import {CarWashService} from "./carwash/carwash.service";
 import {IntroComponent} from './navigation/intro/intro.component';
+import { MapComponent } from './map/map.component';
+import {LeafletModule} from "@asymmetrik/angular2-leaflet";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     IntroComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,8 @@ import {IntroComponent} from './navigation/intro/intro.component';
     SecurityModule,
     ReservationModule,
     CarWashModule,
-    routerModule
+    routerModule,
+    LeafletModule
   ],
   providers: [
     SecurityService,

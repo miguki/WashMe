@@ -30,14 +30,40 @@ export class HoursListComponent {
     client: {
       id: -1
     },
-    endHour: "2017-07-28T09:26:48.566Z",
-    startHour: "2017-07-28T09:26:48.566Z"
+    endHour: -1,
+    startHour: -1
+  }
+
+  private startHoursList = [
+    "2017-08-01T09:00:00.000Z",
+    "2017-08-02T10:00:00.000Z",
+    "2017-08-03T11:00:00.000Z",
+    "2017-08-04T12:00:00.000Z",
+    "2017-08-05T13:00:00.000Z"
+  ]
+
+  private endHoursList = [
+    "2017-08-01T10:00:00.000Z",
+    "2017-08-02T11:00:00.000Z",
+    "2017-08-03T12:00:00.000Z",
+    "2017-08-04T13:00:00.000Z",
+    "2017-08-05T14:00:00.000Z"
+  ]
+
+  setStartHour(startHour) {
+    this.reservation.startHour = startHour
+    console.log(startHour)
+  }
+
+  setEndHour(endHour) {
+    this.reservation.endHour = endHour
+    console.log(endHour)
   }
 
   addReservation() {
     console.log(this.reservation)
-    this.reservation.carWash.id=this.id
-    this.reservation.client.id=this.activeUser.id
+    this.reservation.carWash.id = this.id
+    this.reservation.client.id = this.activeUser.id
     this.reservationService.addReservation(this.reservation)
       .subscribe(() => {
         console.log(this.reservation)
