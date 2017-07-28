@@ -28,6 +28,7 @@ export class SecurityService {
     return this.authenticationEvents.getValue();
   }
 
+
   login(username: string, password: string): Observable<boolean> {
     let payload = this.preparePayload(username, password);
     return this.http.post(this.api.oauthServer, payload)

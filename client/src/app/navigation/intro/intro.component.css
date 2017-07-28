@@ -1,0 +1,10 @@
+.intro{
+  height: 100%;
+  background-image: url('./images/water_drops_dark_background-wallpaper-2560x1600.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.intro-text{
+  padding-top: 15%;
+}

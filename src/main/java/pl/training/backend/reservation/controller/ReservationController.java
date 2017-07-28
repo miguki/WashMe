@@ -44,11 +44,10 @@ public class ReservationController {
     @ApiOperation(value = "Create new reservation")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity createReservation(@ApiParam(name = "reservation")
-                                            @RequestBody ReservationDto reservationDto,
-                                            @RequestParam(value = "carWashId", required = true) Long carWashId) { //w odpowiedzi wysyła http
+                                            @RequestBody ReservationDto reservationDto) { //w odpowiedzi wysyła http
         Reservation reservation = mapper.map(reservationDto, Reservation.class);
         reservation.setClient(usersService.getCurrentUser().getClient());
-        reservation.setCarWash(carWashService.getCarWashById(carWashId));
+        reservation.setCarWash(carWashService.getCarWashById(reservationDto.getCarWash().getId()));
         reservationService.addReservation(reservation);
         URI uri = uriBuilder.requestUriWithId(reservation.getId());
         return created(uri).build();

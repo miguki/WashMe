@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SecurityService} from "../security.service";
 import {Router} from "@angular/router";
+import {UsersService} from "../../users/users.service";
 
 @Component({
   selector: 'app-login-form',
@@ -13,17 +14,26 @@ export class LoginFormComponent implements OnInit {
   password: string
   loginResult: boolean
   pendingRequest = false
+  private isLoggedIn = false;
+  private currentUser
 
-  constructor(private securityService: SecurityService, private router: Router) {
+  constructor(private securityService: SecurityService, private router: Router, private usersService: UsersService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.securityService.events.subscribe(state => {
+      this.isLoggedIn = state;
+      if (state == true) {
+        this.usersService.getActiveUser().subscribe(response => this.currentUser = response)
+      }
+      console.log("state" + state)
+    })
+
   }
 
   login() {
     this.securityService.login(this.username, this.password)
       .subscribe(() => {
-        console.log(this.securityService.isAuthenticated())
         this.loginResult = true
         this.router.navigateByUrl("/")
       }, () => {
@@ -31,6 +41,13 @@ export class LoginFormComponent implements OnInit {
         this.pendingRequest = false
       })
     console.log(this.loginResult)
+  }
+
+  logout(){
+    this.securityService.logout();
+    this.loginResult=null
+    this.username=""
+    this.password=""
   }
 
 }

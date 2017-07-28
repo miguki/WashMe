@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CarWashService} from "../carwash.service";
 
 @Component({
   selector: 'app-all-car-washes',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllCarWashesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private carWashService: CarWashService) { }
 
   ngOnInit() {
-  }
+    this.carWashService.getAllCarWashes().subscribe(carWashPage => this.carWashes = carWashPage.carWashes)  }
+
+    carWashes = []
 
 }

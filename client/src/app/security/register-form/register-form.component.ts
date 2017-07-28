@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../users/users.service";
 import {Router} from "@angular/router";
 
@@ -9,7 +9,8 @@ import {Router} from "@angular/router";
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(private userService: UsersService, private router: Router) { }
+  constructor(private userService: UsersService, private router: Router) {
+  }
 
   ngOnInit() {
   }
@@ -33,6 +34,6 @@ export class RegisterFormComponent implements OnInit {
         console.log('failed')
         this.registerResult = false;
       })
-  };
-
   }
+
+}

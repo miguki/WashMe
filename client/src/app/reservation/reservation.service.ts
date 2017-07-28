@@ -14,4 +14,8 @@ export class ReservationService {
     return this.http.get(this.api.reservation).map(response => response.json())
   }
 
+  addReservation(reservation:any):Observable<any>{
+    return this.http.post(this.api.reservation, reservation)
+  }
+
 }

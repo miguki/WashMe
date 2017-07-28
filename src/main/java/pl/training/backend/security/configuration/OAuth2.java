@@ -32,8 +32,9 @@ public class OAuth2 {
             http.authorizeRequests()
                     .antMatchers(PUBLIC_URIS).permitAll()
                     .antMatchers(POST, "/api-v1/clients").permitAll()
+                    .antMatchers(POST, "/api-v1/carWash").permitAll()
                     .antMatchers(POST, USERS_URI).permitAll()
-                    .antMatchers(GET, ACTIVE_USER_URI).authenticated()
+                    .antMatchers(GET, ACTIVE_USER_URI).permitAll()
                     .antMatchers(ALL_URIS).permitAll();
 
         }

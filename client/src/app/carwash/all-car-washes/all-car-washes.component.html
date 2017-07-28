@@ -1,3 +1,16 @@
-<p>
-  all-car-washes works!
-</p>
+<div class="offset-md-0 col-md-12">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Slots</th>
+    </tr>
+    <tr *ngFor="let carWash of carWashes">
+      <td>{{carWash.id}}</td>
+      <td>{{carWash.name}}</td>
+      <td>{{carWash.slots}}</td>
+      <td><button type="button" class="btn btn-primary btn-sm" [routerLink]="['/all-car-washes', carWash.id]">Select</button></td>
+    </tr>
+  </table>
+</div>
+<router-outlet></router-outlet>
