@@ -1,9 +1,9 @@
 <form class="form-inline my-2 my-lg-0">
-<a *ngIf="isLoggedIn" style="margin-right: 10px">Logged in as {{username}}</a>
+<a *ngIf="isLoggedIn" style="margin-right: 10px">Logged in as {{userNameRestored}}</a>
   <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" *ngIf="isLoggedIn" (click) = "logout()">Logout</button>
 </form>
 <form class="form-inline my-2 my-lg-0" *ngIf="!isLoggedIn">
-  <a *ngIf="loginResult==false" style="margin-right: 10px; color: red">Invalid username or password</a>
+  <a *ngIf="loginError==true" style="margin-right: 10px; color: red">Invalid username or password</a>
   <a href="/register" style="margin-right: 10px">Register</a>
   <input class="form-control mr-sm-2" type="text" placeholder="Login" name="Login" [(ngModel)]="username">
   <input class="form-control mr-sm-2" type="password" placeholder="Password" name="Password" [(ngModel)]="password">

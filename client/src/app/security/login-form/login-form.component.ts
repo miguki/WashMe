@@ -1,53 +1,66 @@
-import {Component, OnInit} from '@angular/core';
-import {SecurityService} from "../security.service";
-import {Router} from "@angular/router";
-import {UsersService} from "../../users/users.service";
+import {Component} from '@angular/core';
+import {SecurityService} from '../security.service';
+import {Router} from '@angular/router';
+import {User} from "../user";
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
 
   username: string
   password: string
-  loginResult: boolean
+  loginError: boolean
   pendingRequest = false
-  private isLoggedIn = false;
-  private currentUser
-
-  constructor(private securityService: SecurityService, private router: Router, private usersService: UsersService) {
+  isLoggedIn: boolean
+  user: {
+    name: string
   }
+  userNameRestored: string
 
-  ngOnInit(): void {
-    this.securityService.events.subscribe(state => {
-      this.isLoggedIn = state;
-      if (state == true) {
-        this.usersService.getActiveUser().subscribe(response => this.currentUser = response)
-      }
-      console.log("state" + state)
-    })
-
+  constructor(private securityService: SecurityService, private router: Router) {
+    this.setUser()
   }
 
   login() {
+    this.pendingRequest = true
     this.securityService.login(this.username, this.password)
       .subscribe(() => {
-        this.loginResult = true
-        this.router.navigateByUrl("/")
+        this.router.navigateByUrl('')
+        this.isLoggedIn = true
+        this.setUser()
+        this.restoreUserName()
+        this.loginError=false
       }, () => {
-        this.loginResult = false
+        this.loginError = true
         this.pendingRequest = false
       })
-    console.log(this.loginResult)
   }
 
-  logout(){
+  logout() {
     this.securityService.logout();
-    this.loginResult=null
-    this.username=""
-    this.password=""
+    this.userNameRestored = ""
+    this.isLoggedIn = false
+    this.username = ""
+    this.password = ""
+  }
+
+  restoreUserName() {
+    if (this.user) {
+      this.userNameRestored = this.user.name
+    }
+  }
+
+  setUser(){
+    this.user = this.securityService.getUser()
+    if (this.user) {
+      this.isLoggedIn = true
+      this.restoreUserName()
+    } else {
+      this.isLoggedIn = false
+    }
   }
 
 }
