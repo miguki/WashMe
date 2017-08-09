@@ -15,6 +15,7 @@ import {CarWashService} from "./carwash/carwash.service";
 import {IntroComponent} from './navigation/intro/intro.component';
 import { MapComponent } from './map/map.component';
 import {LeafletModule} from "@asymmetrik/angular2-leaflet";
+import {SecurityGuard} from "./security/security.guard";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import {LeafletModule} from "@asymmetrik/angular2-leaflet";
   providers: [
     SecurityService,
     Api,
-    SecurityService,
+    SecurityGuard,
     UsersService,
     ReservationService,
     CarWashService

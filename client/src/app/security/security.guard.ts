@@ -12,7 +12,7 @@ export class SecurityGuard implements CanActivate {
     if (this.securityService.getUser() != null) {
       return true
     } else {
-      this.router.navigateByUrl('')
+      this.router.navigateByUrl('authorization-required')
       return false
     }
   }

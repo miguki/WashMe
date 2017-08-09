@@ -8,6 +8,8 @@ import {AllCarWashesComponent} from "./carwash/all-car-washes/all-car-washes.com
 import {IntroComponent} from "./navigation/intro/intro.component";
 import {HoursListComponent} from "./reservation/hours-list/hours-list.component";
 import {MapComponent} from "./map/map.component";
+import {AuthorizationRequiredComponent} from "./security/authorization-required/authorization-required.component";
+import {PageNotFoundComponent} from "./security/page-not-found/page-not-found.component";
 
 const routesConfig = [
 
@@ -18,30 +20,36 @@ const routesConfig = [
     path: 'register', component: RegisterFormComponent
   },
   {
-    path: 'all-clients', component: AllClientsComponent
+    path: 'all-clients', component: AllClientsComponent, canActivate: [SecurityGuard]
   },
   {
-    path: 'all-reservations', component: AllReservationsComponent
+    path: 'all-reservations', component: AllReservationsComponent, canActivate: [SecurityGuard]
   },
   {
-    path: 'car-wash-register-form', component: CarWashRegisterFormComponent
+    path: 'car-wash-register-form', component: CarWashRegisterFormComponent, canActivate: [SecurityGuard]
   },
   {
-    path: 'map', component: MapComponent
+    path: 'map', component: MapComponent, canActivate: [SecurityGuard]
   },
   {
-    path: 'all-car-washes', component: AllCarWashesComponent,
+    path: 'authorization-required', component: AuthorizationRequiredComponent,
+  },
+  {
+    path: 'all-car-washes', component: AllCarWashesComponent, canActivate: [SecurityGuard],
     children: [
       {
-        path: ':id', component: HoursListComponent,
+        path: ':id', component: HoursListComponent, canActivate: [SecurityGuard]
         //tutaj można dodać resolver
       }
     ]
+  },
+  {
+    path: 'page-not-found', component: PageNotFoundComponent
+  },
+  {
+    path: '**', redirectTo: 'page-not-found'//, canActivate: [SecurityGuard]
   }
 
-  // {
-  //   path: '*', redirectTo: '/', canActivate: [SecurityGuard]
-  // }
 ]
 
 export const routerModule = RouterModule.forRoot(routesConfig, {
