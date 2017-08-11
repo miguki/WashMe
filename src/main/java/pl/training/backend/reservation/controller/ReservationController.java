@@ -26,7 +26,7 @@ import static org.springframework.http.ResponseEntity.created;
 /**
  * Created by Jasiek on 27.07.2017.
  */
-@Api(description = "Reservation")
+@Api(description = "Reservations resource")
 @RequestMapping(value = UriBuilder.PREFIX + "/reservation")
 @RestController
 @Transactional
