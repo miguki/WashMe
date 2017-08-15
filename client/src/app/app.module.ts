@@ -16,6 +16,9 @@ import {IntroComponent} from './navigation/intro/intro.component';
 import { MapComponent } from './map/map.component';
 import {LeafletModule} from "@asymmetrik/angular2-leaflet";
 import {SecurityGuard} from "./security/security.guard";
+import {ServiceModule} from "./service/service.module";
+import {ServiceService} from "./service/service.service";
+import {JobModule} from "./job/job.module";
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import {SecurityGuard} from "./security/security.guard";
     SecurityModule,
     ReservationModule,
     CarWashModule,
+    ServiceModule,
+    JobModule,
     routerModule,
     LeafletModule
   ],
@@ -39,7 +44,8 @@ import {SecurityGuard} from "./security/security.guard";
     SecurityGuard,
     UsersService,
     ReservationService,
-    CarWashService
+    CarWashService,
+    ServiceService
   ],
   bootstrap: [AppComponent]
 })

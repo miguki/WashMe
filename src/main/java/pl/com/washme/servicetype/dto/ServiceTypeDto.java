@@ -8,11 +8,12 @@ import lombok.Data;
 @Data
 public class ServiceTypeDto {
 
-    @ApiModelProperty(required = true)
+    @ApiModelProperty
     private Long id;
     @ApiModelProperty(required = true)
     private String name;
     @ApiModelProperty(required = true)
     private Long price;
-    //URI Builder
+    @ApiModelProperty(required = true)
+    private Long duration;
 }

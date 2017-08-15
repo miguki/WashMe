@@ -16,5 +16,7 @@ public class ServiceType{
     private String name;
     @Column(nullable = false)
     private Long price;
+    @Column(nullable = false)
+    private Long duration;
 
 }

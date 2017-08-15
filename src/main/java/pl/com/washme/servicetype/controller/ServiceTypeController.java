@@ -6,22 +6,22 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.com.washme.common.model.Mapper;
+import pl.com.washme.common.model.ResultPage;
 import pl.com.washme.common.web.UriBuilder;
 import pl.com.washme.servicetype.dto.ServiceTypeDto;
+import pl.com.washme.servicetype.dto.ServiceTypePageDto;
 import pl.com.washme.servicetype.entity.ServiceType;
 import pl.com.washme.servicetype.service.ServiceTypeService;
 
 import java.net.URI;
+import java.util.List;
 
 import static org.springframework.http.ResponseEntity.created;
 
 @Api(description = "ServiceTypes resource")
-@RequestMapping(value = UriBuilder.PREFIX + "/service-types")
+@RequestMapping(value = UriBuilder.PREFIX + "/service-type")
 @RestController
 @Transactional
 public class ServiceTypeController {
@@ -39,5 +39,14 @@ public class ServiceTypeController {
         serviceTypeService.addServiceType(serviceType);
         URI uri = uriBuilder.requestUriWithId(serviceType.getId());
         return created(uri).build();
+    }
+    @ApiOperation(value = "Get all ServiceTypes", response = ServiceTypePageDto.class)
+    @RequestMapping(method = RequestMethod.GET)
+    public ServiceTypePageDto getAllServiceTypes(
+            @RequestParam(required = false, defaultValue = "0", name = "pageNumber") int pageNumber,
+            @RequestParam(required = false, defaultValue = "10", name = "pageSize") int pageSize) {
+        ResultPage<ServiceType> resultPage = serviceTypeService.getAllServiceTypes(pageNumber, pageSize);
+        List<ServiceTypeDto> serviceTypeDtos = mapper.map(resultPage.getContent(), ServiceTypeDto.class);
+        return new ServiceTypePageDto(serviceTypeDtos, resultPage.getPageNumber(), resultPage.getTotalPages());
     }
 }

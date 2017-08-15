@@ -1,0 +1,25 @@
+<div class="offset-md-0 col-md-12">
+  <table>
+    <tr>
+      <th>Add</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Duration</th>
+    </tr>
+    <tr *ngFor="let serviceType of serviceTypes">
+      <!--<td>{{serviceType.id}}</td>-->
+      <td>
+        <input type="checkbox" (change)="toggleSelectionOnList(serviceType.id)">
+      </td>
+      <td>{{serviceType.id}}</td>
+      <td>{{serviceType.name}}</td>
+      <td>{{serviceType.price}}</td>
+      <td>{{serviceType.duration}}</td>
+    </tr>
+  </table>
+</div>
+<div class="col-md-9">
+  <router-outlet></router-outlet>
+</div>
+<!--[checked]="checkboxValue"-->

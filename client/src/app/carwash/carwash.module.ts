@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AllCarWashesComponent } from './all-car-washes/all-car-washes.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AllCarWashesComponent} from './all-car-washes/all-car-washes.component';
 import {HttpModule} from "@angular/http";
-import { CarWashRegisterFormComponent } from './car-wash-register-form/car-wash-register-form.component';
+import {CarWashRegisterFormComponent} from './car-wash-register-form/car-wash-register-form.component';
 import {FormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 
@@ -18,4 +18,5 @@ import {RouterModule} from "@angular/router";
     AllCarWashesComponent
   ]
 })
-export class CarWashModule { }
+export class CarWashModule {
+}

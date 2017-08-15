@@ -1,23 +1,22 @@
-package pl.com.washme.servicepackage.dto;
+package pl.com.washme.job.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import pl.com.washme.servicetype.entity.ServiceType;
+import pl.com.washme.servicepackage.entity.ServicePackage;
 
 import java.util.List;
 
-@ApiModel(value = "ServicePackage")
+@ApiModel(value = "Job")
 @Data
-public class ServicePackageDto {
+public class JobDto {
 
     @ApiModelProperty
     private Long id;
     @ApiModelProperty(required = true)
-    private String name;
+    private Long userId;
     @ApiModelProperty(required = true)
-    private Long price;
+    private Long servicePackageId;
     @ApiModelProperty(required = true)
     private List<Long> serviceTypesIds;
-    //URI Builder
 }
