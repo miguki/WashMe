@@ -6,5 +6,6 @@ export class Api {
   reservation = 'http://localhost:8080/api-v1/reservation'
   carWash = 'http://localhost:8080/api-v1/car-wash'
   serviceType = 'http://localhost:8080/api-v1/service-type'
+  servicePackage = 'http://localhost:8080/api-v1/service-package'
 
 }

@@ -13,6 +13,10 @@ export class ServiceService {
     return this.http.post(this.api.serviceType, serviceType)
   }
 
+  addServicePackage(servicePackage: any):Observable<any>{
+    return this.http.post(this.api.servicePackage, servicePackage)
+  }
+
   getAllServiceTypes(): Observable<any> {
     return this.http.get(this.api.serviceType).map(response => response.json())
   }

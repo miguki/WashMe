@@ -25,7 +25,7 @@ import java.util.List;
 import static org.springframework.http.ResponseEntity.created;
 
 @Api(description = "ServicePackages resource")
-@RequestMapping(value = UriBuilder.PREFIX + "/service-packages")
+@RequestMapping(value = UriBuilder.PREFIX + "/service-package")
 @RestController
 @Transactional
 public class ServicePackageController {

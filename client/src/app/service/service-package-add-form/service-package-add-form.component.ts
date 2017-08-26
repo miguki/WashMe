@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ServiceService} from "../service.service";
 
@@ -9,7 +9,8 @@ import {ServiceService} from "../service.service";
 })
 export class ServicePackageAddFormComponent implements OnInit {
 
-  constructor(private serviceService: ServiceService, private router: Router) { }
+  constructor(private serviceService: ServiceService, private router: Router) {
+  }
 
   ngOnInit() {
   }
@@ -23,7 +24,7 @@ export class ServicePackageAddFormComponent implements OnInit {
   }
 
   registerFormMethod() {
-    this.serviceService.addServiceType(this.servicePackage)
+    this.serviceService.addServicePackage(this.servicePackage)
       .subscribe(() => {
         console.log(this.servicePackage)
         this.router.navigateByUrl("")
@@ -31,5 +32,14 @@ export class ServicePackageAddFormComponent implements OnInit {
         console.log('failed')
         this.registerResult = false;
       })
+  }
+
+  logJson() {
+    console.log(this.servicePackage)
+  }
+
+  onToggle(serviceTypesIds) {
+    this.servicePackage.serviceTypesIds = serviceTypesIds
+    console.log(this.servicePackage)
   }
 }

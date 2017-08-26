@@ -8,9 +8,10 @@
     <div class="form-group">
       <label for="service-package-price">Service package price</label>
       <input type="number" class="form-control" id="service-package-price" placeholder="Enter service package price" name="service-package-price"
-             [ngModel]="servicePackage.price | number : 2" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01"
-             (ngModelChange)="servicePackage.price=$event">
+             [(ngModel)]="servicePackage.price">
     </div>
+    <app-all-service-types (emittedServiceTypeList)="onToggle($event)"></app-all-service-types>
     <button type="submit" class="btn btn-primary" (click)="registerFormMethod()">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="logJson()">Log Json</button>
   </form>
 </div>
