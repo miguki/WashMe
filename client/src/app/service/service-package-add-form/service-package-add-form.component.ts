@@ -34,12 +34,9 @@ export class ServicePackageAddFormComponent implements OnInit {
       })
   }
 
-  logJson() {
-    console.log(this.servicePackage)
-  }
-
   onToggle(serviceTypesIds) {
     this.servicePackage.serviceTypesIds = serviceTypesIds
     console.log(this.servicePackage)
   }
+
 }

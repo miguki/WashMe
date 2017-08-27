@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ServiceService} from "../service.service";
 import {ServiceType} from "../service-type";
+import {ServiceTypeAddFormComponent} from "../service-type-add-form/service-type-add-form.component";
 
 @Component({
   selector: 'app-all-service-types',
@@ -18,8 +19,12 @@ export class AllServiceTypesComponent implements OnInit {
 
   serviceTypes = []
   selectedServiceTypesIds = []
-
-  @Output() emittedServiceTypeList = new EventEmitter<any>()
+  @Input()
+  viewForAddingServicePackage = false
+  @Output()
+  emittedServiceTypeList = new EventEmitter<any>()
+  @ViewChild(ServiceTypeAddFormComponent)
+  private child : ServiceTypeAddFormComponent
 
   toggleSelectionOnList(serviceTypeId) {
     if (this.selectedServiceTypesIds.includes(serviceTypeId)) {
@@ -32,8 +37,8 @@ export class AllServiceTypesComponent implements OnInit {
     this.emittedServiceTypeList.emit(this.selectedServiceTypesIds)
   }
 
-  check() {
-    console.log(this.serviceTypes)
+  submitChild(){
+    this.child.registerFormMethod()
   }
 
 }
