@@ -6,7 +6,7 @@ body, html, .container-fluid, .sidebar, .body {
 }
 .body{
   box-sizing: border-box;
-  padding-top:56px;
+  padding-top: 56px;
   margin:0;
 }
 .navbar {

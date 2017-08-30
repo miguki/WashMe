@@ -1,7 +1,7 @@
 <div class="offset-md-0 col-md-12">
 
   <button *ngIf="viewForAddingServicePackage==false" type="button" class="btn btn-primary" data-toggle="modal"
-          data-target="#exampleModal">
+          data-target="#exampleModal" (click)="clearSelectedServiceTypeToEdit()">
     Add Service Type
   </button>
 
@@ -11,13 +11,13 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Service Type</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{modalHeader}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <app-service-type-add-form></app-service-type-add-form>
+          <app-service-type-add-form [serviceType]="selectedServiceType"></app-service-type-add-form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="submitChild()">Submit</button>
@@ -33,6 +33,8 @@
       <th>Name</th>
       <th>Price</th>
       <th>Duration</th>
+      <th *ngIf="viewForAddingServicePackage==false">Edit</th>
+      <th *ngIf="viewForAddingServicePackage==false">Delete</th>
     </tr>
     <tr *ngFor="let serviceType of serviceTypes">
       <td *ngIf="viewForAddingServicePackage==true">
@@ -42,7 +44,17 @@
       <td>{{serviceType.name}}</td>
       <td>{{serviceType.price}}</td>
       <td>{{serviceType.duration}}</td>
+      <th *ngIf="viewForAddingServicePackage==false">
+        <button type="button" class="btn btn-primary btn-sm"
+                data-toggle="modal"
+                data-target="#exampleModal" (click)="selectServiceTypeToEdit(serviceType)">Edit
+        </button>
+      </th>
+      <th *ngIf="viewForAddingServicePackage==false">
+        <button type="button" class="btn btn-danger btn-sm"
+                (click)="deleteServiceType(serviceType)">Delete
+        </button>
+      </th>
     </tr>
   </table>
-
 </div>

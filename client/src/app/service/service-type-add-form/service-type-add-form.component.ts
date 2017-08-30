@@ -9,14 +9,17 @@ import {Router} from "@angular/router";
 })
 export class ServiceTypeAddFormComponent implements OnInit {
 
-  constructor(private serviceService: ServiceService, private router: Router) { }
+  constructor(private serviceService: ServiceService, private router: Router) {
+  }
 
   ngOnInit() {
   }
 
   private registerResult: boolean
 
-  private serviceType = {
+  @Input()
+  serviceType = {
+    id: '',
     duration: '',
     name: '',
     price: ''
@@ -26,10 +29,18 @@ export class ServiceTypeAddFormComponent implements OnInit {
     this.serviceService.addServiceType(this.serviceType)
       .subscribe(() => {
         console.log(this.serviceType)
-        this.router.navigateByUrl("")
       }, () => {
         console.log('failed')
         this.registerResult = false;
+      })
+  }
+
+  editServiceType() {
+    this.serviceService.editServiceType(this.serviceType)
+      .subscribe(() => {
+        console.log('success')
+      }, () => {
+        console.log('failed')
       })
   }
 

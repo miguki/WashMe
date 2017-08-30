@@ -16,6 +16,8 @@ public class ServicePackage {
     private String name;
     @Column(nullable = false)
     private Long price;
+//    @Column(nullable = false)
+    private String description;
     @ManyToMany
     private List<ServiceType> serviceTypes;
 

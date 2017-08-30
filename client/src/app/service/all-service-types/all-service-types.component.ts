@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angula
 import {ServiceService} from "../service.service";
 import {ServiceType} from "../service-type";
 import {ServiceTypeAddFormComponent} from "../service-type-add-form/service-type-add-form.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-all-service-types',
@@ -10,11 +11,16 @@ import {ServiceTypeAddFormComponent} from "../service-type-add-form/service-type
 })
 export class AllServiceTypesComponent implements OnInit {
 
-  constructor(private serviceService: ServiceService) {
-    this.serviceService.getAllServiceTypes().subscribe(serviceTypesPage => this.serviceTypes = serviceTypesPage.serviceTypes)
+  constructor(private serviceService: ServiceService, private router: Router) {
+    this.reload()
   }
 
   ngOnInit() {
+  }
+
+  reload() {
+    this.serviceService.getAllServiceTypes()
+      .subscribe(serviceTypesPage => this.serviceTypes = serviceTypesPage.serviceTypes)
   }
 
   serviceTypes = []
@@ -24,7 +30,10 @@ export class AllServiceTypesComponent implements OnInit {
   @Output()
   emittedServiceTypeList = new EventEmitter<any>()
   @ViewChild(ServiceTypeAddFormComponent)
-  private child : ServiceTypeAddFormComponent
+  private child: ServiceTypeAddFormComponent
+  selectedServiceType = {}
+  editSwitch = false
+  modalHeader: string
 
   toggleSelectionOnList(serviceTypeId) {
     if (this.selectedServiceTypesIds.includes(serviceTypeId)) {
@@ -37,8 +46,34 @@ export class AllServiceTypesComponent implements OnInit {
     this.emittedServiceTypeList.emit(this.selectedServiceTypesIds)
   }
 
-  submitChild(){
-    this.child.registerFormMethod()
+  submitChild() {
+    if (this.editSwitch) {
+      this.child.editServiceType()
+    } else {
+      this.child.registerFormMethod()
+    }
+    this.reload()
   }
 
+  deleteServiceType(serviceType) {
+    this.serviceService.deleteServiceType(serviceType)
+      .subscribe(() => {
+        this.reload()
+        console.log('success')
+      }, () => {
+        console.log('failed')
+      })
+  }
+
+  selectServiceTypeToEdit(serviceType) {
+    this.selectedServiceType = serviceType
+    this.editSwitch = true
+    this.modalHeader = "Edit Service Type"
+  }
+
+  clearSelectedServiceTypeToEdit() {
+    this.selectedServiceType = {}
+    this.editSwitch = false
+    this.modalHeader = "Add Service Type"
+  }
 }

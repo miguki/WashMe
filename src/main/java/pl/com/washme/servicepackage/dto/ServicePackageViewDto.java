@@ -9,7 +9,7 @@ import java.util.List;
 
 @ApiModel(value = "ServicePackage")
 @Data
-public class ServicePackageDto {
+public class ServicePackageViewDto {
 
     @ApiModelProperty
     private Long id;
@@ -20,6 +20,6 @@ public class ServicePackageDto {
     @ApiModelProperty(required = true)
     private String description;
     @ApiModelProperty(required = true)
-    private List<Long> serviceTypesIds;
+    private List<ServiceType> serviceTypes;
     //URI Builder
 }

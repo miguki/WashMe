@@ -16,11 +16,15 @@ public class ServiceTypeService {
     @Autowired
     private ServiceTypeRepository serviceTypeRepository;
 
-    public void addServiceType(ServiceType serviceType){
+    public void addEditServiceType(ServiceType serviceType) {
         serviceTypeRepository.saveAndFlush(serviceType);
     }
 
-    public ServiceType findById(Long id){
+    public void deleteServiceType(ServiceType serviceType) {
+        serviceTypeRepository.delete(serviceType.getId());
+    }
+
+    public ServiceType findById(Long id) {
         return serviceTypeRepository.findOne(id);
     }
 

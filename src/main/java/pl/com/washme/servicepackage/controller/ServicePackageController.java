@@ -6,13 +6,13 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.com.washme.common.model.Mapper;
+import pl.com.washme.common.model.ResultPage;
 import pl.com.washme.common.web.UriBuilder;
 import pl.com.washme.servicepackage.dto.ServicePackageDto;
+import pl.com.washme.servicepackage.dto.ServicePackagePageDto;
+import pl.com.washme.servicepackage.dto.ServicePackageViewDto;
 import pl.com.washme.servicepackage.entity.ServicePackage;
 import pl.com.washme.servicepackage.service.ServicePackageService;
 import pl.com.washme.servicetype.entity.ServiceType;
@@ -51,5 +51,15 @@ public class ServicePackageController {
         servicePackageService.addServicePackage(servicePackage);
         URI uri = uriBuilder.requestUriWithId(servicePackage.getId());
         return created(uri).build();
+    }
+
+    @ApiOperation(value = "Get all ServicePackages", response = ServicePackagePageDto.class)
+    @RequestMapping(method = RequestMethod.GET)
+    public ServicePackagePageDto getAllServicePackages(
+            @RequestParam(required = false, defaultValue = "0", name = "pageNumber") int pageNumber,
+            @RequestParam(required = false, defaultValue = "10", name = "pageSize") int pageSize) {
+        ResultPage<ServicePackage> resultPage = servicePackageService.getAllServicePackages(pageNumber, pageSize);
+        List<ServicePackageViewDto> servicePackageDtos = mapper.map(resultPage.getContent(), ServicePackageViewDto.class);
+        return new ServicePackagePageDto(servicePackageDtos, resultPage.getPageNumber(), resultPage.getTotalPages());
     }
 }

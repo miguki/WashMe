@@ -36,7 +36,7 @@ public class ServiceTypeController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity addServiceType(@ApiParam(name = "service-type") @RequestBody ServiceTypeDto serviceTypeDto) {
         ServiceType serviceType = mapper.map(serviceTypeDto, ServiceType.class);
-        serviceTypeService.addServiceType(serviceType);
+        serviceTypeService.addEditServiceType(serviceType);
         URI uri = uriBuilder.requestUriWithId(serviceType.getId());
         return created(uri).build();
     }
@@ -48,5 +48,21 @@ public class ServiceTypeController {
         ResultPage<ServiceType> resultPage = serviceTypeService.getAllServiceTypes(pageNumber, pageSize);
         List<ServiceTypeDto> serviceTypeDtos = mapper.map(resultPage.getContent(), ServiceTypeDto.class);
         return new ServiceTypePageDto(serviceTypeDtos, resultPage.getPageNumber(), resultPage.getTotalPages());
+    }
+    @ApiOperation(value = "Edit ServiceType")
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity editServiceType(@ApiParam(name = "service-type") @RequestBody ServiceTypeDto serviceTypeDto) {
+        ServiceType serviceType = mapper.map(serviceTypeDto, ServiceType.class);
+        serviceTypeService.addEditServiceType(serviceType);
+        URI uri = uriBuilder.requestUriWithId(serviceType.getId());
+        return created(uri).build();
+    }
+    @ApiOperation(value = "Delete ServiceType")
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity deleteServiceType(@ApiParam(name = "service-type") @RequestBody ServiceTypeDto serviceTypeDto) {
+        ServiceType serviceType = mapper.map(serviceTypeDto, ServiceType.class);
+        serviceTypeService.deleteServiceType(serviceType);
+        URI uri = uriBuilder.requestUriWithId(serviceType.getId());
+        return created(uri).build();
     }
 }

@@ -1,24 +1,19 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Siemanko</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+<div class="container">
+  <div class="row">
+    <div class="col-sm" *ngFor="let servicePackage of servicePackages">
+      <div class="card card-inverse" style="background-color: #333; border-color: #333; width: 20rem;">
+        <div class="card-block">
+          <h3 class="card-title">{{servicePackage.name}}</h3>
+          <p class="card-text">{{servicePackage.description}}</p>
+          <button type="button" class="btn btn-primary">Order</button>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" style="color: #333333; font-size: 14pt; font-weight: bold">Services included</li>
+          <li class="list-group-item" style="color: #333333" *ngFor="let serviceType of servicePackage.serviceTypes">{{serviceType.name}}</li>
+        </ul>
       </div>
     </div>
   </div>
 </div>
+
+

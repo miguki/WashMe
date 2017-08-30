@@ -20,6 +20,7 @@ export class ServicePackageAddFormComponent implements OnInit {
   private servicePackage = {
     name: '',
     price: '',
+    description: '',
     serviceTypesIds: []
   }
 

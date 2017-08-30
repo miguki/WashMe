@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {ServiceService} from "../service.service";
 
 @Component({
   selector: 'app-all-service-packages',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllServicePackagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private serviceService: ServiceService, private router: Router) {
+    this.serviceService.getAllServicePackages()
+      .subscribe(servicePackagesPage => this.servicePackages = servicePackagesPage.servicePackages)
+  }
 
   ngOnInit() {
   }
+
+  servicePackages = []
 
 }

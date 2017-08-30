@@ -6,6 +6,11 @@
              [(ngModel)]="servicePackage.name">
     </div>
     <div class="form-group">
+      <label for="service-package-description">Description of service package</label>
+      <input type="text" class="form-control" id="service-package-description" placeholder="Enter service package description" name="service-package-description"
+             [(ngModel)]="servicePackage.description">
+    </div>
+    <div class="form-group">
       <label for="service-package-price">Service package price</label>
       <input type="number" class="form-control" id="service-package-price" placeholder="Enter service package price" name="service-package-price"
              [(ngModel)]="servicePackage.price">
