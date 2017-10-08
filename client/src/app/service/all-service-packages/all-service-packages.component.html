@@ -5,11 +5,15 @@
         <div class="card-block">
           <h3 class="card-title">{{servicePackage.name}}</h3>
           <p class="card-text">{{servicePackage.description}}</p>
+          <p class="card-text">Price: {{servicePackage.price/100}}</p>
+          <p class="card-text">Average duration: </p>
           <button type="button" class="btn btn-primary">Order</button>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item" style="color: #333333; font-size: 14pt; font-weight: bold">Services included</li>
-          <li class="list-group-item" style="color: #333333" *ngFor="let serviceType of servicePackage.serviceTypes">{{serviceType.name}}</li>
+          <li class="list-group-item" style="color: #333333" *ngFor="let serviceType of servicePackage.serviceTypes">
+            {{serviceType.name}}
+          </li>
         </ul>
       </div>
     </div>
